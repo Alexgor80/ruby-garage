@@ -1,0 +1,34 @@
+<% _.each(projects, function(project){ %>
+<div class="block-project" id="<%= project.id %>">
+    <div class="card">
+        <h3 class="card-header"><i style="color: #364a65" class="fa fa-list-alt" aria-hidden="true"></i> <span class="project-name"><%= project.name %></span>
+            <i projectId="<%= project.id %>" style="color: #cfcfcf" class="fa fa-pencil edit-project float-right" aria-hidden="true"></i>
+            <i projectId="<%= project.id %>" style="color: #cfcfcf; margin-right: 10px;" class="fa fa-trash-o delete-project float-right" aria-hidden="true"></i>
+        </h3>
+        <div class="create-task">
+
+            <div class="input-group">
+                <i style="color: #7cb594" class="fa fa-plus"></i>
+                <input type="text" class="form-control task-name" style="border-radius: 10px 0 0 10px;">
+                <span class="input-group-btn">
+                            <button class="btn btn-default add-task" type="button" projectId="<%= project.id %>">Add task</button>
+                        </span>
+            </div>
+        </div>
+        <div class="card-block">
+            <table class="table table-bordered table-hover">
+                <tbody>
+                <% _.each(project.tasks, function(task){ %>
+
+                <tr id="<%= task.id %>">
+                    <th scope="row"><input class="checkbox" type="checkbox" task-id="<%= task.id%>" <% if (task.status) { %>checked="checked"<% } %>/></th>
+                    <td class="name-task" width="82%"><%= task.name %></td>
+                    <td><i class="fa fa-pencil edit-task-button" task-id="<%= task.id%>" aria-hidden="true"></i> | <i task-id="<%= task.id%>" class="fa fa-trash-o deleteButton" aria-hidden="true"></i></td>
+                </tr>
+                <% });%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<% });%>
